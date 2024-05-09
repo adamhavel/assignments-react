@@ -4,7 +4,7 @@
     "version": "0.2.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "VITE_API_URL=http://localhost:3000/items vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
         "format": "prettier --write \"src/**/*.ts*\"",
@@ -16,6 +16,7 @@
         "@radix-ui/colors": "^3.0.0",
         "@radix-ui/react-checkbox": "^1.0.1",
         "@radix-ui/react-icons": "^1.1.1",
+        "axios": "^1.6.8",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "styled-components": "^6.1.8",

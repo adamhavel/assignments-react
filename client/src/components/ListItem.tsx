@@ -13,7 +13,7 @@ const Label = styled.label`
     margin-left: 15px;
 `;
 
-export type LiteeItemProp = {
+export type ListItemProp = {
     label: string;
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
@@ -21,17 +21,17 @@ export type LiteeItemProp = {
     onItemDelete: () => void;
 };
 
-export const ListItem = (props: LiteeItemProp) => {
+export const ListItem = (props: ListItemProp) => {
     const { label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
 
     return (
         <StyledDiv>
             <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
             <Label>{label}</Label>
-            <button>
+            <button onClick={() => onItemDelete()}>
                 <TrashIcon />
             </button>
-            <button onClick={() => onItemDelete()}>
+            <button onClick={() => onItemLabelEdit(label)}>
                 <Pencil1Icon />
             </button>
         </StyledDiv>

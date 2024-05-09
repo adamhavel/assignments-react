@@ -1,18 +1,14 @@
 import { Container } from "./components/Container";
-import { Layout } from "./components/Layout";
-import { List } from "./components/List";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { TodoList } from "./components/TodoList";
 import { ThemeProvider } from "./components/providers/ThemeProvider";
+import { EnvProvider } from "./components/providers/EnvProvider";
 
 export const App = () => (
     <ThemeProvider>
-        <Container>
-            <Layout>
-                <Header onItemAdd={() => console.warn("unimplemented")}>To Do app</Header>
-                <List />
-                <Footer />
-            </Layout>
-        </Container>
+        <EnvProvider>
+            <Container>
+                <TodoList />
+            </Container>
+        </EnvProvider>
     </ThemeProvider>
 );
