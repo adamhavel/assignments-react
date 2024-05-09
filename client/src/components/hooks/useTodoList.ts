@@ -20,6 +20,7 @@ export type PartialTodo = Omit<Todo, 'id'>;
 
 export type UseTodoListReturn = TodoListState & {
     addTodo: (todo: PartialTodo) => Promise<void>;
+    toggleTodo: (id: number, isDone: boolean) => Promise<void>;
 }
   
 const useTodoList = (): UseTodoListReturn => {
@@ -42,7 +43,13 @@ const useTodoList = (): UseTodoListReturn => {
         dispatch({ type: TodoListActionTypes.Add, todo });
     };
 
-    return { ...state, addTodo };
+    const toggleTodo = async (id: number, isDone: boolean) => {
+        const { data: todo } = await axios.patch(`${apiUrl}/${id}`, { isDone }) as AxiosResponse<Todo>;
+
+        dispatch({ type: TodoListActionTypes.Toggle, todo });
+    }
+
+    return { ...state, addTodo, toggleTodo };
 };
 
 export default useTodoList;
