@@ -8,10 +8,15 @@ import { Form } from "./form/Form";
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+
+    form {
+        margin-right: auto;
+    }
 `;
 
 const Label = styled.label`
     margin-left: 15px;
+    margin-right: auto;
 `;
 
 export type ListItemProp = {
