@@ -5,17 +5,25 @@ import { List } from "./List";
 import { ListItem } from "./ListItem";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import useTodoList from "./hooks/useTodoList";
+import useTodoList, { PartialTodo } from "./hooks/useTodoList";
 
 export const TodoList: React.FC = () => {
-    const { todos } = useTodoList();
+    const { todos, addTodo } = useTodoList();
     const sortedTodos = todos.sort((a, b) =>
         Number(a.isDone) - Number(b.isDone) || b.createdAt - a.createdAt
     );
 
+    const onItemAdd = async (label: string) => {
+        await addTodo({
+            label,
+            isDone: false,
+            createdAt: Date.now(),
+        });
+    };
+
     return (
         <Layout>
-            <Header onItemAdd={() => console.warn("unimplemented")}>
+            <Header onItemAdd={onItemAdd}>
                 <h1>To Do app</h1>
             </Header>
             <List>
