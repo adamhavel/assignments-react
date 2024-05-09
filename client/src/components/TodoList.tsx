@@ -9,6 +9,9 @@ import useTodoList from "./hooks/useTodoList";
 
 export const TodoList: React.FC = () => {
     const { todos } = useTodoList();
+    const sortedTodos = todos.sort((a, b) =>
+        Number(a.isDone) - Number(b.isDone) || b.createdAt - a.createdAt
+    );
 
     return (
         <Layout>
@@ -16,7 +19,7 @@ export const TodoList: React.FC = () => {
                 <h1>To Do app</h1>
             </Header>
             <List>
-                {todos.map(todo => (
+                {sortedTodos.map(todo => (
                     <ListItem
                         key={todo.id}
                         label={todo.label}
