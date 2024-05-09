@@ -16,13 +16,9 @@ type FooterProps = {
     doneItems?: number;
 };
 
-export const Footer = (props: FooterProps) => {
-    const { todoItems, doneItems } = props;
-
-    return (
-        <FooterStyled>
-            Todo: {todoItems ?? 0}
-            Done: {todoItems ?? 0}
-        </FooterStyled>
-    );
-};
+export const Footer = ({ todoItems, doneItems }: FooterProps) => (
+    <FooterStyled>
+        Todo: {todoItems ?? 0}
+        Done: {doneItems ?? 0}
+    </FooterStyled>
+);

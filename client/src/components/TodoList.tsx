@@ -50,7 +50,10 @@ export const TodoList: React.FC = () => {
                     />
                 ))}
             </List>
-            <Footer />
+            <Footer
+                todoItems={todos.length}
+                doneItems={todos.filter(({ isDone }) => isDone).length}
+            />
         </Layout>
     );
 };
