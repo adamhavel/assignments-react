@@ -21,6 +21,7 @@ export type PartialTodo = Omit<Todo, 'id'>;
 export type UseTodoListReturn = TodoListState & {
     addTodo: (todo: PartialTodo) => Promise<void>;
     toggleTodo: (id: number, isDone: boolean) => Promise<void>;
+    deleteTodo: (id: number) => Promise<void>;
 }
   
 const useTodoList = (): UseTodoListReturn => {
@@ -49,7 +50,13 @@ const useTodoList = (): UseTodoListReturn => {
         dispatch({ type: TodoListActionTypes.Toggle, todo });
     }
 
-    return { ...state, addTodo, toggleTodo };
+    const deleteTodo = async (id: number) => {
+        await axios.delete(`${apiUrl}/${id}`);
+
+        dispatch({ type: TodoListActionTypes.Delete, id });
+    }
+
+    return { ...state, addTodo, toggleTodo, deleteTodo };
 };
 
 export default useTodoList;
