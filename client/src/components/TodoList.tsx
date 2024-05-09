@@ -5,7 +5,7 @@ import { List } from "./List";
 import { ListItem } from "./ListItem";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import useTodoList, { PartialTodo } from "./hooks/useTodoList";
+import useTodoList from "./hooks/useTodoList";
 
 export const TodoList: React.FC = () => {
     const { todos, addTodo, toggleTodo, deleteTodo, editTodo } = useTodoList();
@@ -15,11 +15,7 @@ export const TodoList: React.FC = () => {
     const doneTodosCount = todos.filter(({ isDone }) => isDone).length;
 
     const onItemAdd = async (label: string) => {
-        await addTodo({
-            label,
-            isDone: false,
-            createdAt: Date.now(),
-        } as PartialTodo);
+        await addTodo(label);
     };
 
     const onItemDoneToggle = (id: number) => async (isDone: boolean) => {

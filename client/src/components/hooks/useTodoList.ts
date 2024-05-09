@@ -16,10 +16,8 @@ export type Todo = {
     finishedAt?: number;
 };
 
-export type PartialTodo = Omit<Todo, 'id'>;
-
 export type UseTodoListReturn = TodoListState & {
-    addTodo: (todo: PartialTodo) => Promise<void>;
+    addTodo: (label: string) => Promise<void>;
     toggleTodo: (id: number, isDone: boolean) => Promise<void>;
     deleteTodo: (id: number) => Promise<void>;
     editTodo: (id: number, label: string) => Promise<void>;
@@ -39,8 +37,8 @@ const useTodoList = (): UseTodoListReturn => {
         fetchTodos();
     }, []);
 
-    const addTodo = async (partialTodo: PartialTodo) => {
-        const { data: todo } = await axios.post(apiUrl, partialTodo) as AxiosResponse<Todo>;
+    const addTodo = async (label: string) => {
+        const { data: todo } = await axios.post(apiUrl, { label, isDone: false }) as AxiosResponse<Todo>;
 
         dispatch({ type: TodoListActionTypes.Add, todo });
     };
