@@ -18,7 +18,7 @@ export type Todo = {
 
 export type UseTodoListReturn = TodoListState & {
     addTodo: (label: string) => Promise<void>;
-    toggleTodo: (id: number, isDone: boolean) => Promise<void>;
+    toggleTodo: (id: number) => Promise<void>;
     deleteTodo: (id: number) => Promise<void>;
     editTodo: (id: number, label: string) => Promise<void>;
 }
@@ -43,8 +43,8 @@ const useTodoList = (): UseTodoListReturn => {
         dispatch({ type: TodoListActionTypes.Add, todo });
     };
 
-    const toggleTodo = async (id: number, isDone: boolean) => {
-        const { data: todo } = await axios.patch(`${apiUrl}/${id}`, { isDone }) as AxiosResponse<Todo>;
+    const toggleTodo = async (id: number) => {
+        const { data: todo } = await axios.patch(`${apiUrl}/${id}/done`) as AxiosResponse<Todo>;
 
         dispatch({ type: TodoListActionTypes.Toggle, todo });
     };

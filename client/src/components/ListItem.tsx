@@ -23,7 +23,7 @@ export type ListItemProp = {
     label: string;
     isDone: boolean;
     onItemLabelEdit: (label: string) => void;
-    onItemDoneToggle: (isDone: boolean) => void;
+    onItemDoneToggle: () => void;
     onItemDelete: () => void;
 };
 
