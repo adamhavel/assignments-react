@@ -30,7 +30,7 @@ export const Form = (props: FormProps) => {
             }}
         >
             <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
-            <button type={"submit"}>
+            <button type={"submit"} disabled={!inputValue.trim().length}>
                 <CheckIcon />
             </button>
             <button type={"reset"}>

@@ -7,6 +7,7 @@ export enum TodoListActionTypes {
     Add = "ADD",
     Toggle = "TOGGLE",
     Delete = "DELETE",
+    Edit = "EDIT",
 }
 
 export type TodoListState = {
@@ -17,7 +18,8 @@ type TodoListAction =
     | { type: TodoListActionTypes.Fetch, todos: Todo[] }
     | { type: TodoListActionTypes.Add, todo: Todo }
     | { type: TodoListActionTypes.Toggle, todo: Todo }
-    | { type: TodoListActionTypes.Delete, id: number };
+    | { type: TodoListActionTypes.Delete, id: number }
+    | { type: TodoListActionTypes.Edit, todo: Todo };
 
 const todoListReducer: Reducer<TodoListState, TodoListAction> = (state, action) => {
     switch (action.type) {
@@ -26,6 +28,7 @@ const todoListReducer: Reducer<TodoListState, TodoListAction> = (state, action) 
         case TodoListActionTypes.Add:
             return { ...state, todos: [...state.todos, action.todo] };
         case TodoListActionTypes.Toggle:
+        case TodoListActionTypes.Edit:
             return {
                 ...state,
                 todos: state.todos.map(todo =>

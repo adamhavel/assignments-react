@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from "react";
-import axios, { Axios, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 
 import { useEnv } from "../providers/EnvProvider";
 import todoListReducer, { TodoListState, TodoListActionTypes } from "../reducers/todoListReducer";
@@ -22,6 +22,7 @@ export type UseTodoListReturn = TodoListState & {
     addTodo: (todo: PartialTodo) => Promise<void>;
     toggleTodo: (id: number, isDone: boolean) => Promise<void>;
     deleteTodo: (id: number) => Promise<void>;
+    editTodo: (id: number, label: string) => Promise<void>;
 }
   
 const useTodoList = (): UseTodoListReturn => {
@@ -48,15 +49,21 @@ const useTodoList = (): UseTodoListReturn => {
         const { data: todo } = await axios.patch(`${apiUrl}/${id}`, { isDone }) as AxiosResponse<Todo>;
 
         dispatch({ type: TodoListActionTypes.Toggle, todo });
-    }
+    };
 
     const deleteTodo = async (id: number) => {
         await axios.delete(`${apiUrl}/${id}`);
 
         dispatch({ type: TodoListActionTypes.Delete, id });
+    };
+
+    const editTodo = async (id: number, label: string) => {
+        const { data: todo } = await axios.patch(`${apiUrl}/${id}`, { label }) as AxiosResponse<Todo>;
+
+        dispatch({ type: TodoListActionTypes.Edit, todo });
     }
 
-    return { ...state, addTodo, toggleTodo, deleteTodo };
+    return { ...state, addTodo, toggleTodo, deleteTodo, editTodo };
 };
 
 export default useTodoList;

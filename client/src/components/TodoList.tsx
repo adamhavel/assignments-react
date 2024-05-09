@@ -8,7 +8,7 @@ import { Footer } from "./Footer";
 import useTodoList, { PartialTodo } from "./hooks/useTodoList";
 
 export const TodoList: React.FC = () => {
-    const { todos, addTodo, toggleTodo, deleteTodo } = useTodoList();
+    const { todos, addTodo, toggleTodo, deleteTodo, editTodo } = useTodoList();
     const sortedTodos = todos.sort((a, b) =>
         Number(a.isDone) - Number(b.isDone) || b.createdAt - a.createdAt
     );
@@ -29,6 +29,10 @@ export const TodoList: React.FC = () => {
         await deleteTodo(id);
     };
 
+    const onItemLabelEdit = (id: number) => async (label: string) => {
+        await editTodo(id, label);
+    };
+
     return (
         <Layout>
             <Header onItemAdd={onItemAdd}>
@@ -42,7 +46,7 @@ export const TodoList: React.FC = () => {
                         isDone={isDone}
                         onItemDelete={onItemDelete(id)}
                         onItemDoneToggle={onItemDoneToggle(id)}
-                        onItemLabelEdit={() => {}}
+                        onItemLabelEdit={onItemLabelEdit(id)}
                     />
                 ))}
             </List>
