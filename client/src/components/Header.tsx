@@ -6,6 +6,7 @@ import { Form } from "./form/Form"
 
 const StyledDiv = styled.header`
     display: flex;
+    justify-content: space-between;
 
     button {
         all: unset;
