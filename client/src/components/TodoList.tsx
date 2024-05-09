@@ -12,6 +12,7 @@ export const TodoList: React.FC = () => {
     const sortedTodos = todos.sort((a, b) =>
         Number(a.isDone) - Number(b.isDone) || b.createdAt - a.createdAt
     );
+    const doneTodosCount = todos.filter(({ isDone }) => isDone).length;
 
     const onItemAdd = async (label: string) => {
         await addTodo({
@@ -51,8 +52,8 @@ export const TodoList: React.FC = () => {
                 ))}
             </List>
             <Footer
-                todoItems={todos.length}
-                doneItems={todos.filter(({ isDone }) => isDone).length}
+                todoItems={todos.length - doneTodosCount}
+                doneItems={doneTodosCount}
             />
         </Layout>
     );
