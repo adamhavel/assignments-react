@@ -3,7 +3,10 @@ import styled from "styled-components";
 import { Pencil1Icon, TrashIcon, PlusIcon, CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 
 const StyledButton = styled.button`
-    cursor: pointer;
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
 `;
 
 export enum ButtonType {
