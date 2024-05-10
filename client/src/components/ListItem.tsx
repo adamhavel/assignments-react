@@ -9,8 +9,12 @@ const StyledDiv = styled.div`
     display: flex;
     align-items: center;
 
-    form {
-        margin-right: auto;
+    div {
+        margin-left: auto;
+    }
+
+    &:not(:hover) div {
+        display: none;
     }
 `;
 
@@ -44,16 +48,18 @@ export const ListItem = (props: ListItemProp) => {
                     onCancel={() => setIsEditing(false)}
                 />
             ) : (
-                <>
-                    <Label>{label}</Label>
+                <Label>{label}</Label>
+            )}
+            <div>
+                {!isEditing && (
                     <button onClick={() => setIsEditing(true)}>
                         <Pencil1Icon />
                     </button>
-                </>
-            )}
-            <button onClick={() => onItemDelete()}>
-                <TrashIcon />
-            </button>
+                )}
+                <button onClick={() => onItemDelete()}>
+                    <TrashIcon />
+                </button>
+            </div>
         </StyledDiv>
     );
 };
