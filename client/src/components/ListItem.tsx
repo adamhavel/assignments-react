@@ -1,9 +1,9 @@
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Checkbox } from "./Checkbox";
 import { Form } from "./form/Form";
+import { Button, ButtonVariant } from "./Button";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -52,13 +52,9 @@ export const ListItem = (props: ListItemProp) => {
             )}
             <div>
                 {!isEditing && (
-                    <button onClick={() => setIsEditing(true)}>
-                        <Pencil1Icon />
-                    </button>
+                    <Button onClick={() => setIsEditing(true)} variant={ButtonVariant.Edit} label="Edit" />
                 )}
-                <button onClick={() => onItemDelete()}>
-                    <TrashIcon />
-                </button>
+                <Button onClick={() => onItemDelete()} variant={ButtonVariant.Delete} label="Delete" />
             </div>
         </StyledDiv>
     );

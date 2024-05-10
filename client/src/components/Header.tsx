@@ -1,8 +1,8 @@
-import { PlusIcon } from "@radix-ui/react-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { Form } from "./form/Form"
+import { Form } from "./form/Form";
+import { Button, ButtonVariant } from "./Button";
 
 const StyledDiv = styled.header`
     display: flex;
@@ -44,9 +44,7 @@ export const Header = ({ onItemAdd, children }: HeaderProps) => {
                     onCancel={() => setIsFormVisible(false)}
                 />
             ) : (
-                <button onClick={() => setIsFormVisible(true)}>
-                    <PlusIcon />
-                </button>
+                <Button onClick={() => setIsFormVisible(true)} variant={ButtonVariant.Add} label="Add todo" />
             )}
         </StyledDiv>
     );
