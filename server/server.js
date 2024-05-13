@@ -16,6 +16,7 @@ server.use((req, res, next) => {
 
 server.patch('/items/:id/done', (req, res) => {
     const id = Number(req.params.id);
+    const { isDone } = req.body;
     const item = db.get('items').find({ id }).value();
 
     if (!item) {
@@ -24,8 +25,8 @@ server.patch('/items/:id/done', (req, res) => {
 
     const updatedItem = {
         ...item,
-        isDone: !item.isDone,
-        finishedAt: item.isDone ? undefined : Date.now(),
+        isDone,
+        finishedAt: isDone ? Date.now() : undefined,
     };
 
     db.get('items').find({ id }).assign(updatedItem).write();

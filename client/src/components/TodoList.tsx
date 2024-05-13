@@ -18,8 +18,8 @@ export const TodoList: React.FC = () => {
         await addTodo(label);
     };
 
-    const onItemDoneToggle = (id: number) => async () => {
-        await toggleTodo(id);
+    const onItemDoneToggle = (id: number) => async (isDone: boolean) => {
+        await toggleTodo(id, isDone);
     };
 
     const onItemDelete = (id: number) => async () => {
