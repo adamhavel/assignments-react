@@ -5,22 +5,35 @@ import { Checkbox } from "./Checkbox";
 import { Form } from "./form/Form";
 import { Button, ButtonVariant } from "./Button";
 
-const StyledDiv = styled.div`
+const StyledDiv = styled.li`
     display: flex;
     align-items: center;
 
+    form {
+        flex-grow: 1;
+    }
+
     div {
-        margin-left: auto;
-    }
-
-    &:not(:hover) div {
         display: none;
-    }
-`;
+        margin-left: auto;
 
-const Label = styled.label`
-    margin-left: 15px;
-    margin-right: auto;
+        > :not(:last-child) {
+            margin-right: .5em;
+        }
+    }
+
+    &:hover div,
+    form + div {
+        display: block;
+    } 
+
+    span {
+        padding: 0 .5em;
+    }
+
+    > :not(:last-child) {
+        margin-right: .5em;
+    }
 `;
 
 export type ListItemProp = {
@@ -48,7 +61,7 @@ export const ListItem = (props: ListItemProp) => {
                     onCancel={() => setIsEditing(false)}
                 />
             ) : (
-                <Label>{label}</Label>
+                <span>{label}</span>
             )}
             <div>
                 {!isEditing && (

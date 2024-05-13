@@ -9,13 +9,14 @@ const CheckboxStyled = styled(CheckboxPrimitive.Root)`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
-    width: 25px;
-    height: 25px;
+    width: 1.75em;
+    height: 1.75em;
 
     background-color: white;
-    border-radius: 2px;
-    box-shadow: ${(props) => `0 2px 10px ${props.theme.colors.blackA7}`};
+    border-radius: 50%;
+    box-shadow: ${(props) => `0 1px 5px ${props.theme.colors.blackA7}`};
 
     &:hover {
         background-color: ${(props) => props.theme.colors.grass3};

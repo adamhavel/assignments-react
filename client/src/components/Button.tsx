@@ -3,9 +3,25 @@ import styled from "styled-components";
 import { Pencil1Icon, TrashIcon, PlusIcon, CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 
 const StyledButton = styled.button`
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.75em;
+    height: 1.75em;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    border-width: 2px;
+    background-color: ${(props) => props.theme.colors.blackA3};
+    border-color: ${(props) => props.theme.colors.blackA6};
 
     &:not(:disabled) {
         cursor: pointer;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: ${(props) => props.theme.colors.blackA5};
     }
 `;
 

@@ -6,6 +6,22 @@ import { Button, ButtonVariant, ButtonType } from "../Button";
 
 const FormStyled = styled.form`
     display: flex;
+
+    input {
+        all: unset;
+        width: 100%;
+        background: ${(props) => props.theme.colors.blackA1};
+        border-radius: .25em;
+        padding: 0 .5em;
+    }
+
+    button {
+        flex-shrink: 0;
+    }
+
+    > :not(:last-child) {
+        margin-right: .5em;
+    }
 `;
 
 type FormProps = {
